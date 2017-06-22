@@ -1,9 +1,8 @@
 /*
 This is empty on purpose! Your code to build the resume will go here.
 
-############	Projeto currículo online - fundamentos de javascript - nanodegree frontend.		############
+############    Projeto currículo online - fundamentos de javascript - nanodegree frontend.     ############
 */
-
 var bio = {
     name: "Carolinne Machado",
     role: "A little child learning to live",
@@ -11,13 +10,13 @@ var bio = {
         mobile: "(62)99999-9999",
         email: "email.teste@email.com",
         github: "https://github.com/carolinne",
-	    // twitter: "secret xD",
+        // twitter: "secret xD",
         location: "Goiânia"
     },
-    welcomeMessage: "Welcome! lorem ipsum", 
+    welcomeMessage: "Welcome! lorem ipsum",
     skills: ["read", "sleep", "eat", "play videogame"],
     biopic: "images/fry.jpg",
-    
+
     // propriedade-função display para anexar dados da experiência 'profissional' ao currículo
     // ou fora do objeto, por notação de ponto: bio.display = function() { ... }
     display: function() {
@@ -25,22 +24,27 @@ var bio = {
         var formattedName = HTMLheaderName.replace("%data%", bio.name);
 
         $("#header").prepend(formattedRole);
-		$("#header").prepend(formattedName);
+        $("#header").prepend(formattedName);
 
         $("#topContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
         $("#topContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
         $("#topContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
         $("#topContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
 
+        $("#footerContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
+        $("#footerContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
+        $("#footerContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
+        $("#footerContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
+
         $("#header").append(HTMLbioPic.replace("%data%", bio.biopic));
 
         $("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
 
-    	$("#header").append(HTMLskillsStart);
+        $("#header").append(HTMLskillsStart);
 
-		bio.skills.forEach(function(skill) {
-			$("#header").append(HTMLskills.replace("%data%", skill));
-		});
+        bio.skills.forEach(function(skill) {
+            $("#header").append(HTMLskills.replace("%data%", skill));
+        });
     }
 };
 // OUTRA FORMA DE FAZER O DISPLAY:
@@ -63,7 +67,7 @@ var education = {
             dates: "2010-2016",
             url: "www.google.com"
         }
-    ],   
+    ],
     onlineCourses: [ // array de objetos
         {
             title: "Learn HTML & CSS",
@@ -92,29 +96,29 @@ var education = {
     ]
 };
 education.display = function() {
-	education.schools.forEach(function(escola) {
-		$("#education").append(HTMLschoolStart);
+    education.schools.forEach(function(escola) {
+        $("#education").append(HTMLschoolStart);
 
-		var formattedName = HTMLschoolName.replace("%data%", escola.name);
-		var formattedLocation = HTMLschoolLocation.replace("%data%", escola.location);
-		var formattedDegree = HTMLschoolDegree.replace("%data%", escola.degree);
-		var formattedMajors = HTMLschoolMajor.replace("%data%", escola.majors);
-		var formattedDates = HTMLschoolDates.replace("%data%", escola.dates);
-	
-		$(".education-entry:last").append(formattedName + formattedLocation + formattedDegree + formattedDates + formattedMajors);
-	});
+        var formattedName = HTMLschoolName.replace("%data%", escola.name);
+        var formattedLocation = HTMLschoolLocation.replace("%data%", escola.location);
+        var formattedDegree = HTMLschoolDegree.replace("%data%", escola.degree);
+        var formattedMajors = HTMLschoolMajor.replace("%data%", escola.majors);
+        var formattedDates = HTMLschoolDates.replace("%data%", escola.dates);
 
-	$("#education").append(HTMLonlineClasses);
-	education.onlineCourses.forEach(function(curso) {
-		$("#education").append(HTMLschoolStart);
+        $(".education-entry:last").append(formattedName + formattedLocation + formattedDegree + formattedDates + formattedMajors);
+    });
 
-		var formattedTitle = HTMLonlineTitle.replace("%data%", curso.title);
-		var formattedSchool = HTMLonlineSchool.replace("%data%", curso.school);
-		var formattedDatesOnline = HTMLonlineDates.replace("%data%", curso.dates);
-		var formattedUrl = HTMLonlineURL.replace("%data%", curso.url);
-	
-		$(".education-entry:last").prepend(formattedTitle + formattedSchool + formattedDatesOnline + formattedUrl);
-	});
+    $("#education").append(HTMLonlineClasses);
+    education.onlineCourses.forEach(function(curso) {
+        $("#education").append(HTMLschoolStart);
+
+        var formattedTitle = HTMLonlineTitle.replace("%data%", curso.title);
+        var formattedSchool = HTMLonlineSchool.replace("%data%", curso.school);
+        var formattedDatesOnline = HTMLonlineDates.replace("%data%", curso.dates);
+        var formattedUrl = HTMLonlineURL.replace("%data%", curso.url);
+
+        $(".education-entry:last").prepend(formattedTitle + formattedSchool + formattedDatesOnline + formattedUrl);
+    });
 };
 education.display();
 
@@ -122,31 +126,31 @@ education.display();
 var work = {
     jobs: [ // array de objetos
         {
-           employer: "CERCOMP", 
-           title: "Suporte técnico", 
-           location: "CERCOMP - UFG", 
-           dates: "2012-2014",
-           description: "Serviço de suporte técnico para os computadores, periféricos, e assessórios da UFG."
+            employer: "CERCOMP",
+            title: "Suporte técnico",
+            location: "CERCOMP - UFG",
+            dates: "2012-2014",
+            description: "Serviço de suporte técnico para os computadores, periféricos, e assessórios da UFG."
         },
         {
-           employer: "LabTIME", 
-           title: "Web dev", 
-           location: "LabTIME - UFG", 
-           dates: "in progress",
-           description: "Desenvolvimento de telas em HTML e CSS."
+            employer: "LabTIME",
+            title: "Web dev",
+            location: "LabTIME - UFG",
+            dates: "in progress",
+            description: "Desenvolvimento de telas em HTML e CSS."
         }
     ],
-  	display: function() {
-  		work.jobs.forEach(function(job) {
-  			$("#workExperience").append(HTMLworkStart);
+    display: function() {
+        work.jobs.forEach(function(job) {
+            $("#workExperience").append(HTMLworkStart);
 
-			$(".work-entry:last").append(HTMLworkEmployer.replace("%data%", job.employer));
-			$(".work-entry:last").append(HTMLworkTitle.replace("%data%", job.title));
-			$(".work-entry:last").append(HTMLworkLocation.replace("%data%", job.location));
-			$(".work-entry:last").append(HTMLworkDates.replace("%data%", job.dates));
-			$(".work-entry:last").append(HTMLworkDescription.replace("%data%", job.description));
-  		});
-  	}
+            $(".work-entry:last").append(HTMLworkEmployer.replace("%data%", job.employer));
+            $(".work-entry:last").append(HTMLworkTitle.replace("%data%", job.title));
+            $(".work-entry:last").append(HTMLworkLocation.replace("%data%", job.location));
+            $(".work-entry:last").append(HTMLworkDates.replace("%data%", job.dates));
+            $(".work-entry:last").append(HTMLworkDescription.replace("%data%", job.description));
+        });
+    }
 };
 work.display();
 
@@ -157,26 +161,23 @@ var projects = {
             title: "teste",
             dates: "2016",
             description: "teste do projeto frontend.",
-            images: ["images/cynda.png", 
-            		 "./images/pikachu.jpg"]
+            images: ["images/cynda.png",
+                "./images/pikachu.jpg"
+            ]
         }
     ],
 };
 projects.display = function() {
-	$("#projects").append(HTMLprojectStart);
+    $("#projects").append(HTMLprojectStart);
 
     projects.projects.forEach(function(project) {
         $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", project.title));
         $(".project-entry:last").append(HTMLprojectDates.replace("%data%", project.dates));
         $(".project-entry:last").append(HTMLprojectDescription.replace("%data%", project.description));
-        
-        if(project.images.length > 0) {
-            project.images.forEach(function(img) {
-                $(".project-entry:last").append(HTMLprojectImage.replace("%data%", img));
-            });
-        } else {
-            $(".project-entry:last").append(HTMLprojectImage.replace("%data%", project.images));
-        };
+
+        project.images.forEach(function(img) {
+            $(".project-entry:last").append(HTMLprojectImage.replace("%data%", img));
+        });
     });
 };
 projects.display();
