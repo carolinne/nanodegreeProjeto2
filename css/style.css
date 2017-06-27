@@ -37,6 +37,7 @@ h2 {
     color: #999;
     line-height: 29px;
     padding: 10px;
+    text-decoration: underline;
 }
 h3 {
     font-style: italic;
@@ -184,6 +185,7 @@ span {
     height: 400px;
     width: 100%;
     padding-bottom: 5%;
+    background-color: #484848;
 }
 @media only screen and (min-width: 750px) {
     #skills-h3,

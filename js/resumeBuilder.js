@@ -22,28 +22,26 @@ var bio = {
     display: function() {
         var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
         var formattedName = HTMLheaderName.replace("%data%", bio.name);
-
         $("#header").prepend(formattedRole);
         $("#header").prepend(formattedName);
 
-        $("#topContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
-        $("#topContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
-        $("#topContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
-        $("#topContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
+        var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+        var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+        var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+        var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 
-        $("#footerContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
-        $("#footerContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
-        $("#footerContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
-        $("#footerContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
+        $("#topContacts, #footerContacts").append(formattedMobile + formattedEmail + formattedGithub + formattedLocation);
 
-        $("#header").append(HTMLbioPic.replace("%data%", bio.biopic));
+        var formattedBiopic = HTMLbioPic.replace("%data%", bio.biopic);
+        $("#header").append(formattedBiopic);
 
-        $("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
+        var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+        $("#header").append(formattedWelcome);
 
         $("#header").append(HTMLskillsStart);
-
         bio.skills.forEach(function(skill) {
-            $("#header").append(HTMLskills.replace("%data%", skill));
+            var formattedSkills = HTMLskills.replace("%data%", skill)
+            $("#header").append(formattedSkills);
         });
     }
 };
@@ -63,7 +61,7 @@ var education = {
             name: "UFG",
             location: "goiania - goias",
             degree: "curso superior",
-            majors: ["Sistemas de Informação"],
+            majors: ["Sistemas de Informação", "testinho"],
             dates: "2010-2016",
             url: "www.google.com"
         }
@@ -93,32 +91,36 @@ var education = {
             dates: "in progress",
             url: "https://br.udacity.com/course/front-end-web-developer-nanodegree--nd001/"
         }
-    ]
-};
-education.display = function() {
-    education.schools.forEach(function(escola) {
-        $("#education").append(HTMLschoolStart);
+    ],
+    display: function() {
+        education.schools.forEach(function(escola) {
+            $("#education").append(HTMLschoolStart);
 
-        var formattedName = HTMLschoolName.replace("%data%", escola.name);
-        var formattedLocation = HTMLschoolLocation.replace("%data%", escola.location);
-        var formattedDegree = HTMLschoolDegree.replace("%data%", escola.degree);
-        var formattedMajors = HTMLschoolMajor.replace("%data%", escola.majors);
-        var formattedDates = HTMLschoolDates.replace("%data%", escola.dates);
+            var formattedName = HTMLschoolName.replace("%data%", escola.name);
+            var formattedLocation = HTMLschoolLocation.replace("%data%", escola.location);
+            var formattedDegree = HTMLschoolDegree.replace("%data%", escola.degree);
+            var formattedDates = HTMLschoolDates.replace("%data%", escola.dates);
 
-        $(".education-entry:last").append(formattedName + formattedLocation + formattedDegree + formattedDates + formattedMajors);
-    });
+            $(".education-entry:last").append(formattedName + formattedLocation + formattedDegree + formattedDates);
 
-    $("#education").append(HTMLonlineClasses);
-    education.onlineCourses.forEach(function(curso) {
-        $("#education").append(HTMLschoolStart);
+            escola.majors.forEach(function(major) {
+                var formattedMajors = HTMLschoolMajor.replace("%data%", major);
+                $(".education-entry:last").append(formattedMajors);
+            });
+        });
 
-        var formattedTitle = HTMLonlineTitle.replace("%data%", curso.title);
-        var formattedSchool = HTMLonlineSchool.replace("%data%", curso.school);
-        var formattedDatesOnline = HTMLonlineDates.replace("%data%", curso.dates);
-        var formattedUrl = HTMLonlineURL.replace("%data%", curso.url);
+        $("#education").append(HTMLonlineClasses);
+        education.onlineCourses.forEach(function(curso) {
+            $("#education").append(HTMLschoolStart);
 
-        $(".education-entry:last").prepend(formattedTitle + formattedSchool + formattedDatesOnline + formattedUrl);
-    });
+            var formattedTitle = HTMLonlineTitle.replace("%data%", curso.title);
+            var formattedSchool = HTMLonlineSchool.replace("%data%", curso.school);
+            var formattedDatesOnline = HTMLonlineDates.replace("%data%", curso.dates);
+            var formattedUrl = HTMLonlineURL.replace("%data%", curso.url);
+
+            $(".education-entry:last").prepend(formattedTitle + formattedSchool + formattedDatesOnline + formattedUrl);
+        });
+    }
 };
 education.display();
 
@@ -129,7 +131,7 @@ var work = {
             employer: "CERCOMP",
             title: "Suporte técnico",
             location: "CERCOMP - UFG",
-            dates: "2012-2014",
+            dates: "2012 - 2014",
             description: "Serviço de suporte técnico para os computadores, periféricos, e assessórios da UFG."
         },
         {
@@ -144,11 +146,16 @@ var work = {
         work.jobs.forEach(function(job) {
             $("#workExperience").append(HTMLworkStart);
 
-            $(".work-entry:last").append(HTMLworkEmployer.replace("%data%", job.employer));
-            $(".work-entry:last").append(HTMLworkTitle.replace("%data%", job.title));
-            $(".work-entry:last").append(HTMLworkLocation.replace("%data%", job.location));
-            $(".work-entry:last").append(HTMLworkDates.replace("%data%", job.dates));
-            $(".work-entry:last").append(HTMLworkDescription.replace("%data%", job.description));
+            var formattedEmployer = HTMLworkEmployer.replace("%data%", job.employer);
+            var formattedTitle = HTMLworkTitle.replace("%data%", job.title);
+            var formattedLocation = HTMLworkLocation.replace("%data%", job.location);
+            var formattedDates = HTMLworkDates.replace("%data%", job.dates);
+            var formattedDescription = HTMLworkDescription.replace("%data%", job.description);
+
+            $(".work-entry:last").append(formattedEmployer + formattedTitle);
+            $(".work-entry:last").append(formattedLocation);
+            $(".work-entry:last").append(formattedDates);
+            $(".work-entry:last").append(formattedDescription);
         });
     }
 };
@@ -166,19 +173,24 @@ var projects = {
             ]
         }
     ],
-};
-projects.display = function() {
-    $("#projects").append(HTMLprojectStart);
+    display: function() {
+        $("#projects").append(HTMLprojectStart);
 
-    projects.projects.forEach(function(project) {
-        $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", project.title));
-        $(".project-entry:last").append(HTMLprojectDates.replace("%data%", project.dates));
-        $(".project-entry:last").append(HTMLprojectDescription.replace("%data%", project.description));
+        projects.projects.forEach(function(project) {
+            var formattedTitle = HTMLprojectTitle.replace("%data%", project.title);
+            var formattedDates = HTMLprojectDates.replace("%data%", project.dates);
+            var formattedDescription = HTMLprojectDescription.replace("%data%", project.description);
 
-        project.images.forEach(function(img) {
-            $(".project-entry:last").append(HTMLprojectImage.replace("%data%", img));
+            $(".project-entry:last").append(formattedTitle +  formattedDates + formattedDescription);
+            // $(".project-entry:last").append(formattedDates);
+            // $(".project-entry:last").append();
+
+            project.images.forEach(function(img) {
+                var formattedImg = HTMLprojectImage.replace("%data%", img);
+                $(".project-entry:last").append(formattedImg);
+            });
         });
-    });
+    }
 };
 projects.display();
 
