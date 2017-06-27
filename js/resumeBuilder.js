@@ -33,14 +33,12 @@ var bio = {
         $("#topContacts, #footerContacts").append(formattedMobile + formattedEmail + formattedGithub + formattedLocation);
 
         var formattedBiopic = HTMLbioPic.replace("%data%", bio.biopic);
-        $("#header").append(formattedBiopic);
-
         var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-        $("#header").append(formattedWelcome);
+        $("#header").append(formattedBiopic + formattedWelcome);
 
         $("#header").append(HTMLskillsStart);
         bio.skills.forEach(function(skill) {
-            var formattedSkills = HTMLskills.replace("%data%", skill)
+            var formattedSkills = HTMLskills.replace("%data%", skill);
             $("#header").append(formattedSkills);
         });
     }
@@ -152,10 +150,7 @@ var work = {
             var formattedDates = HTMLworkDates.replace("%data%", job.dates);
             var formattedDescription = HTMLworkDescription.replace("%data%", job.description);
 
-            $(".work-entry:last").append(formattedEmployer + formattedTitle);
-            $(".work-entry:last").append(formattedLocation);
-            $(".work-entry:last").append(formattedDates);
-            $(".work-entry:last").append(formattedDescription);
+            $(".work-entry:last").append(formattedEmployer + formattedTitle + formattedLocation + formattedDates + formattedDescription);
         });
     }
 };
@@ -181,9 +176,7 @@ var projects = {
             var formattedDates = HTMLprojectDates.replace("%data%", project.dates);
             var formattedDescription = HTMLprojectDescription.replace("%data%", project.description);
 
-            $(".project-entry:last").append(formattedTitle +  formattedDates + formattedDescription);
-            // $(".project-entry:last").append(formattedDates);
-            // $(".project-entry:last").append();
+            $(".project-entry:last").append(formattedTitle + formattedDates + formattedDescription);
 
             project.images.forEach(function(img) {
                 var formattedImg = HTMLprojectImage.replace("%data%", img);
